@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Road Tracking</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/icon_webtab.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/dc.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet.markerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet-legend.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet-control-minimap.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/google_font_Esteban.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/">
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@[VERSION]/dist/L.Control.Locate.min.css" />
+
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+                <a class="navbar-brand" href="#">Dashboard for FLood Tracking</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <!-- <li class="active"><a href="#section1">Dashboard for Flood Tracking</a></li> -->
+                    <li><a href="#section2">Map and Graph Visualization</a></li>
+                    <li><a href="#section3">Data Table</a></li>
+                    <!-- <li><a href="#section4">Data Table</a></li> -->
+                    <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Quick Access <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal_about">About the project</button></li>
+                            <li><button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal_demoVideo">Demo video</button></li>
+                            <li><button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal_copyRight">License & copyright</button></li>
+                            <li><button type="button" class="btn btn-info btn-sm btn-block" onclick=" window.open('abbrlist_dataExplaination.html','_blank')"> Abbr list & data explanation</button></li>
+                            <li><button type="button" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal_dataEntry">NewDataEntryForm</button></li>
+
+                        </ul>
+                    </li> -->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+        <style>
+            p.small {
+              line-height: 1.5;
+            }
+            
+            p.big {
+              line-height: 1.5;
+            }
+            </style>
+
+        <div id="section1" class="container-fluid">
+            <div class="row">
+ 
+
+
+            </div>
+        </div>
+
+        <div id="section2" class="container-fluid">
+            <div class="row-title" id="control-row">
+                <div class="col-xs-12 dc-data-count dc-chart" id="data-count">
+    
+                    <h3 id="main-title" style="font-family: 'Esteban';"><b><i>Dashboard:</i> Flood TRACKING</b></h3>
+                    <div class="row" id="count-row">
+                        <div class="col-xs-12 dc-dataTitle-count dc-chart" id="data-count">
+                            <h4>Selected flooding location Records:
+                                <small>
+                <span class="filter-count"></span> selected out of <span class="total-count"></span> records |
+                <a id="all" href="javascript:location.reload();">Reset All</a><i style="color: grey;"> (all legends of the donut charts are scrollable and filterable)</i>
+                </span>
+                </small>
+    
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="control-row-map">
+                <div class="col-md-6">
+                    <h4> Geospatial distribution of the selected data<small><a id="mapReset"> reset map</a></small></h4>
+                    <div class="map" id='map'></div>
+                    <div id='cluster-map-anchor'></div>
+                </div>
+                <div class="col-md-3 pie-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="This pie chart indicates the Province location" ><br>Province <small><a id="khet">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-khet"></div>
+                    <div style="width:130px; height:120px" id="khet-legend" class="dc-html-legend-container"></div>
+                </div>
+                <div class="col-md-3 pie-chart" >
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="This pie chart indicates the District location" ><br>District <small><a id="srok">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-srok"></div>
+                    <div style="width:130px; height:120px" id="srok-legend" class="dc-html-legend-container"></div>
+                </div>
+                
+            </div>
+
+            <div class="row" id="control-row-bar-pie">
+                <div class="col-md-3 pie-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="This pie chart indicates the Commune location"><br>Commune <small><a id="khum">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-khum"></div>
+                    <div style="width:150px; height:120px" id="khum-legend" class="dc-html-legend-container"></div>
+                </div>
+                
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Parameter in Commune"><br>Summary of Parameter in Commune<small><a id="para">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-para"></div>
+                    <div style="width:120px; height:120px" id="para-legend" class="dc-html-legend-container"></div>
+                    <div id="para-row-axis"></div>
+                </div>
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Hectare in Commune" ><br>Summary of Hectare in Commune<small><a id="hect">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-hect"></div>
+                    <div id="hect-row-axis"></div>
+                </div>
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Area in Commune" ><br>Summary of Area in Commune <small><a id="area_1">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-area_1"></div>
+                    <!-- <div style="width:135px; height:120px" id="area_1-legend" class="dc-html-legend-container"></div> -->
+                    <div id="area_1_row-axis"></div>
+                </div>
+                
+            <!-- <div class="row" id="control-row-bar-pie">
+                <div class="col-xs-3 pie-chart">
+                    <h4 data-toggle="tooltip" data-placement="top" title="the sector where you focused on." class="yellow-tooltip"><br>Summary of Sector <small><a id="cap_inv_m">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-cap_inv"></div>
+                    <div style="width:150px; height:120px" id="newsector-legend" class="dc-html-legend-container"></div>
+                </div>
+                <div class="col-xs-3 line-chart">
+                    <h4 data-toggle="tooltip" data-placement="top" title="the sector where you focused on." class="yellow-tooltip"><br>Summary of Sector <small><a id="cap_inv_m">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-cap_invline"></div>
+                </div> -->
+            </div>
+
+        <div id="section3" class="container-fluid">
+            <div class="row" id="control-row">
+                <div class="col-xs-12">
+                    <div>
+                        <div class="dc-dataTable-count">
+                            <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+                        </div>
+                    </div>
+                    <table id="data-table" class="table table-hover dc-data-table">
+                    </table>
+                </div>
+                <div class="row" id="control-row">
+                    <div class="col-xs-12">
+                        <table id="data-table" class="table table-hover dc-data-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/d3v5.16.0.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/crossfilterv1.5.4.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/dc4.2.0.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/Leafletv1.6.0.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/colorbrewer.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/underscore-min.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/jQuery.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/Bootstrap.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/axis_dcv4.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/leaflet.markerCluster.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/dc.leafletv0.5.5.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/dc.datatables.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/leaflet-osm.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/Control.MiniMap.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/d3v5.layout.cloud.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/dc-wordcloud_d3v5.js"></script>
+    <script type="text/javascript" src="JS_CSS_downloaded_libraries/removeStopWords.js"></script>
+    
+    </script>
+
+
+    <script type="text/javascript" src="myJS_scripts/main.js"></script>
+
+    <div class="modal fade" id="myModal_about" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About the organization</a>
+                </div>
+                <div class="modal-body">
+
+                    <p>Open Development Cambodia (ODC) is an ‘open data’ website, the first of its kind in Southeast Asia. The open data movement is based on the simple premise that data collected for public interest should be publicly available without restrictions. Information or data in the public domain should be freely available to everyone to use and republish as they wish. Open Development Cambodia does not promote any particular perspective, agenda or bias other than to provide objective information about Cambodia and its development
+                        <a href="https://opendevelopmentcambodia.net/about/background/" target="_blank"><i>Read more</i></a>.
+                    </p>
+
+                    <!-- <strong>Web app team:</strong>
+                    <p>thealy Hello</a> hello</p>
+
+                    <p>Web map design and developer: <a href="https://yputhealy.github.io/" target="_blank">Y Puthealy</a> (yputhealy097@gmail.com)
+                    </p>
+
+                    <p>Data provider (including data structure design): <a href="https://www.linkedin.com/in/y-puthealy-4a2440126/" target="_blank">Y Puthealy</a> (yputhealy097@gmail.com)</p> -->
+
+                    <strong>Acknowledgements:</strong>
+                    <li><a href="https://dc-js.github.io/dc.js/" target="_blank">dc.js</a></li>
+                    <li><a href="https://d3js.org/" target="_blank">D3</a></li>
+                    <li><a href="https://leafletjs.com/" target="_blank">Leaflet</a></li>
+  
+                    <p style="text-align:center;"> <strong> Our web app visitor map</strong> </p>
+
+                    <br>
+                    <div>
+                        <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=a&t=n&d=6v6ApSiDI7LU8886HZwaMzprvYOegUfeTHjx0v25lT0&co=ffffff&ct=808080&cmo=3acc3a&cmn=ff5353'></script>
+                    </div>
+
+                    <br>
+
+    <script>
+        // Hide loader after 15 seconds, even if the page hasn't finished loading
+        // jQuery('#loadingGIF').fadeOut(15 * 1000);
+        jQuery('#loadingGIF').fadeOut(3 * 1000);
+    </script>
+
+</body>
+
+</html>
