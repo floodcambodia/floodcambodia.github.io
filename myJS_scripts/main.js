@@ -862,8 +862,12 @@ var ndx;
         pagodaChart.filterAll(groupname);
         dc.redrawAll(groupname);
     });
-    d3.selectAll('a#hect').on('click', function() {
-        hectChart.filterAll(groupname);
+    d3.selectAll('a#health').on('click', function() {
+        healthChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#canal').on('click', function() {
+        canalChart.filterAll(groupname);
         dc.redrawAll(groupname);
     });
 
