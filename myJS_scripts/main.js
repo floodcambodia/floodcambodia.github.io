@@ -249,6 +249,9 @@ var ndx;
     var khumDim = ndx.dimension(function(d) {
         return d["khum"];
     }, true);
+    var khumDim = ndx.dimension(function(d) {
+        return d["khum"];
+    }, true);
     var khetDim = ndx.dimension(function(d) {
         return d["khet"];
     }, true);
@@ -321,17 +324,17 @@ var ndx;
     var khumGroup = khumDim.group().reduceCount();
     var khetGroup = khetDim.group().reduceCount();
     // var paraGroup = paraDim.group().reduceCount();
-    var paraGroup = khumDim.group().reduceSum(function(d) {
-        return d.para;
+    var schoolGroup = khumDim.group().reduceSum(function(d) {
+        return d.school;
         }, true);
         
     // var area_1Group = area_1Dim.group().reduceCount();
-    var area_1Group = khumDim.group().reduceSum(function(d) {
-        return d.area_1;
+    var pagodaGroup = khumDim.group().reduceSum(function(d) {
+        return d.pagoda;
         }, true);
     // var hectGroup = hectDim.group().reduceCount();
-    var hectGroup = khumDim.group().reduceSum(function(d) {
-        return d.hect;
+    var healthGroup = khumDim.group().reduceSum(function(d) {
+        return d.health;
         }, true);
 
 
@@ -340,16 +343,16 @@ var ndx;
     // nonEmptyHist_year = remove_empty_bins(data_cGroup1)
 
     var srokChart = dc.pieChart('#chart-ring-srok', groupname);
-    var khumChart = dc.pieChart('#chart-ring-khum', groupname);
+    var khumChart = dc.rowChart('#chart-ring-khum', groupname);
+    var khumAxisChart = new dc.axisChart('#khum-row-axis', groupname);
     var khetChart = dc.pieChart("#chart-ring-khet", groupname);
     // var road_lenAxisChart = new dc.axisChart('#road_len-row-axis', groupname);
-    var paraChart = dc.rowChart('#chart-ring-para', groupname);
-    
-    // var paraAxisChart = new dc.axisChart('#para-row-axis', groupname);
-    var area_1Chart = dc.rowChart('#chart-ring-area_1', groupname);
-    // var area_1AxisChart = new dc.axisChart('#area_1-row-axis', groupname);
-    var hectChart = dc.rowChart("#chart-ring-hect", groupname);
-    // var hectAxisChart = new dc.axisChart('#hect-row-axis', groupname);
+    var schoolChart = dc.rowChart('#chart-ring-school', groupname);
+    var schoolAxisChart = new dc.axisChart('#school-row-axis', groupname);
+    var pagodaChart = dc.pieChart('#chart-ring-pagoda', groupname);
+    // var pagodaAxisChart = new dc.axisChart('#pagoda-row-axis', groupname);
+    var healthChart = dc.rowChart("#chart-ring-health", groupname);
+    var healthAxisChart = new dc.axisChart('#health-row-axis', groupname);
 
     var dataTableCount = dc.dataCount('.dc-dataTable-count', groupname);
     var dataTable = dc_datatables.datatable('#data-table', groupname);
@@ -425,17 +428,47 @@ var ndx;
             .horizontal(false)
             .highlightSelected(true));
 
+    // khumChart
+    //     .width(300)
+    //     .height(280)
+    //     .externalLabels(200)
+    //     .dimension(khumDim)
+    //     .innerRadius(40)
+    //     .group(khumGroup)
+    //     .legend(new dc.HtmlLegend()
+    //         .container('#khum-legend')
+    //         .horizontal(false)
+    //         .highlightSelected(true))
     khumChart
         .width(300)
-        .height(280)
-        .externalLabels(200)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
         .dimension(khumDim)
-        .innerRadius(40)
         .group(khumGroup)
-        .legend(new dc.HtmlLegend()
-            .container('#khum-legend')
-            .horizontal(false)
-            .highlightSelected(true))
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(10)
+    khumAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(khumGroup)
+        .elastic(true);
+
 
     khetChart
         .width(300)
@@ -467,7 +500,7 @@ var ndx;
     //             .attr('transform', "rotate(-45)");
     //     });
     
-    paraChart
+    schoolChart
         .width(300)
         .height(10080)
         .margins({
@@ -477,14 +510,46 @@ var ndx;
             bottom: 0
         })
         .dimension(khumDim)
-        .group(paraGroup)
+        .group(schoolGroup)
         .elasticX(true)
         // .colors("#1ca3ec")
         .ordering(function(d) {
             return -d.value;
         })
         .xAxis().ticks(15)
-    // paraAxisChart
+    schoolAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(schoolGroup)
+        .elastic(true);
+
+
+    // pagodaChart
+    //     .width(300)
+    //     .height(10000)
+    //     .margins({
+    //         left: 10,
+    //         top: 15,
+    //         right: 10,
+    //         bottom: 0
+    //     })
+    //     .dimension(khumDim)
+    //     // .ordinalColors(['#ff0000', '#A6F230', '#157EE8', '#c6dbef', '#dadaeb'])
+    //     .group(pagodaGroup)
+    //     .elasticX(true)
+    //     // .colors("#215979")
+    //     .ordering(function(d) {
+    //         return -d.value;
+    //     })
+    //     .xAxis().ticks(15)
+    // pagodaAxisChart
     //     .margins({
     //         left: 10,
     //         top: 0,
@@ -493,12 +558,28 @@ var ndx;
     //     })
     //     .height(50)
     //     .width(300)
-    //     .dimension(paraDim)
-    //     .group(paraGroup)
+    //     .dimension(khumDim)
+    //     .group(pagodaGroup)
     //     .elastic(true);
 
+    pagodaChart
+        .width(300)
+        .height(280)
+        // .slicesCap(400)
+        .innerRadius(40)
+        .externalLabels(200)
+        // .externalRadiusPadding(30)
+        // .drawPaths(true)
+        .dimension(khumDim)
+        .group(pagodaGroup)
+        .legend(new dc.HtmlLegend()
+            .container('#pagoda-legend')
+            .horizontal(false)
+            .highlightSelected(true));
 
-    area_1Chart
+
+
+    healthChart
         .width(300)
         .height(10000)
         .margins({
@@ -509,56 +590,25 @@ var ndx;
         })
         .dimension(khumDim)
         // .ordinalColors(['#ff0000', '#A6F230', '#157EE8', '#c6dbef', '#dadaeb'])
-        .group(area_1Group)
+        .group(healthGroup)
         .elasticX(true)
         // .colors("#215979")
         .ordering(function(d) {
             return -d.value;
         })
         .xAxis().ticks(15)
-    // area_1AxisChart
-    //     .margins({
-    //         left: 10,
-    //         top: 0,
-    //         right: 10,
-    //         bottom: 10
-    //     })
-    //     .height(50)
-    //     .width(300)
-    //     .dimension(area_1Dim)
-    //     .group(area_1Group)
-    //     .elastic(true);
-
-    hectChart
-        .width(300)
-        .height(10000)
+    healthAxisChart
         .margins({
             left: 10,
-            top: 15,
+            top: 0,
             right: 10,
-            bottom: 0
+            bottom: 10
         })
+        .height(50)
+        .width(300)
         .dimension(khumDim)
-        // .ordinalColors(['#ff0000', '#A6F230', '#157EE8', '#c6dbef', '#dadaeb'])
-        .group(hectGroup)
-        .elasticX(true)
-        // .colors("#215979")
-        .ordering(function(d) {
-            return -d.value;
-        })
-        .xAxis().ticks(15)
-    // hectAxisChart
-    //     .margins({
-    //         left: 10,
-    //         top: 0,
-    //         right: 10,
-    //         bottom: 10
-    //     })
-    //     .height(50)
-    //     .width(300)
-    //     .dimension(hectDim)
-    //     .group(hectGroup)
-    //     .elastic(true);
+        .group(healthGroup)
+        .elastic(true);
 
 
     dataCount
@@ -769,13 +819,13 @@ var ndx;
         dc.redrawAll(groupname);
     });
 
-    d3.selectAll('a#para').on('click', function() {
-        paraChart.filterAll(groupname);
+    d3.selectAll('a#school').on('click', function() {
+        schoolChart.filterAll(groupname);
         dc.redrawAll(groupname);
     });
 
-    d3.selectAll('a#area_1').on('click', function() {
-        area_1Chart.filterAll(groupname);
+    d3.selectAll('a#pagoda').on('click', function() {
+        pagodaChart.filterAll(groupname);
         dc.redrawAll(groupname);
     });
     d3.selectAll('a#hect').on('click', function() {
