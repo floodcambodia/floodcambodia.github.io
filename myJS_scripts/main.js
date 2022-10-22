@@ -863,3 +863,4 @@ $('.navbar li a').click(function(event) {
     $(href)[0].scrollIntoView();
     window.scrollBy(0, -navOffset);
 });
+   
