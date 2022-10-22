@@ -56,15 +56,15 @@ L.control.layers(baseMaps).addTo(map);
 function addDataToMap(data, map) {
     var dataLayer = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
-            var popupText = "Province name: " + feature.properties.HRName
-                + "<br>Location: " + feature.properties.HRParent
-                // + "<br><a href='" + feature.properties.url + "'>More info</a>";
+            var popupText = "Commune name: " + feature.properties.KHUMNAME
+                + "<br>in District of : " + feature.properties.SROKNAME
+                + "<br> in Province of: " + feature.properties.KHETNAME;
             layer.bindPopup(popupText); }
         });
     dataLayer.addTo(map);
 }
 
-$.getJSON("https://raw.githubusercontent.com/floodcambodia/floodcambodia.github.io/data/123.geojson", function(data) { addDataToMap(data, map); });
+$.getJSON("https://raw.githubusercontent.com/floodcambodia/floodcambodia.github.io/main/data/123.geojson", function(data) { addDataToMap(data, map); });
 
 ////for geojson point only
 // function addDataToMap(data, map) {
@@ -336,6 +336,9 @@ var ndx;
     var healthGroup = khumDim.group().reduceSum(function(d) {
         return d.health;
         }, true);
+    var canalGroup = khumDim.group().reduceSum(function(d) {
+        return d.canal;
+        }, true);
 
 
 
@@ -353,6 +356,8 @@ var ndx;
     // var pagodaAxisChart = new dc.axisChart('#pagoda-row-axis', groupname);
     var healthChart = dc.rowChart("#chart-ring-health", groupname);
     var healthAxisChart = new dc.axisChart('#health-row-axis', groupname);
+    var canalChart = dc.rowChart('#chart-ring-canal', groupname);
+    var canalAxisChart = new dc.axisChart('#canal-row-axis', groupname);
 
     var dataTableCount = dc.dataCount('.dc-dataTable-count', groupname);
     var dataTable = dc_datatables.datatable('#data-table', groupname);
@@ -609,6 +614,35 @@ var ndx;
         .dimension(khumDim)
         .group(healthGroup)
         .elastic(true);
+    canalChart
+        .width(300)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(canalGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    canalAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(canalGroup)
+        .elastic(true);
 
 
     dataCount
@@ -863,4 +897,3 @@ $('.navbar li a').click(function(event) {
     $(href)[0].scrollIntoView();
     window.scrollBy(0, -navOffset);
 });
-   
