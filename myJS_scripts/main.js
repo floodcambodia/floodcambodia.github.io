@@ -64,7 +64,7 @@ function addDataToMap(data, map) {
     dataLayer.addTo(map);
 }
 
-$.getJSON("https://raw.githubusercontent.com/rsmapunit/rsmapunit.github.io/main/cambodia.geojson", function(data) { addDataToMap(data, map); });
+$.getJSON("https://raw.githubusercontent.com/floodcambodia/floodcambodia.github.io/data/123.geojson", function(data) { addDataToMap(data, map); });
 
 ////for geojson point only
 // function addDataToMap(data, map) {
