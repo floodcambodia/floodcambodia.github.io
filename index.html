@@ -34,8 +34,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <!-- <li class="active"><a href="#section1">Dashboard for Flood Tracking</a></li> -->
-                    <li><a href="#section2">Map and Graph Visualization</a></li>
-                    <li><a href="#section3">Data Table</a></li>
+                    <!-- <li><a href="#section2">Map and Graph Visualization</a></li>
+                    <li><a href="#section3">Data Table</a></li> -->
                     <!-- <li><a href="#section4">Data Table</a></li> -->
                     <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Quick Access <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -117,7 +117,6 @@
                     <h4 data-toggle="tooltip" data-placement="top" title="This pie chart indicates the Commune location"><br>Commune <small><a id="khum">reset</a></small></h4>
                     <div class="dc-chart" id="chart-ring-khum"></div>
                     <div id="khum-row-axis"></div>
-                    <!-- <div style="width:150px; height:120px" id="khum-legend" class="dc-html-legend-container"></div> -->
                 </div>
                 <div class="col-md-3 row-chart">
                     <div class="row" id="control-row-map"></div>
@@ -138,22 +137,9 @@
                     <div class="dc-chart" id="chart-ring-pagoda"></div>
                     <div style="width:130px; height:120px" id="pagoda-legend" class="dc-html-legend-container"></div>
                 </div>
-                
-            <!-- <div class="row" id="control-row-bar-pie">
-                <div class="col-xs-3 pie-chart">
-                    <h4 data-toggle="tooltip" data-placement="top" title="the sector where you focused on." class="yellow-tooltip"><br>Summary of Sector <small><a id="cap_inv_m">reset</a></small></h4>
-                    <div class="dc-chart" id="chart-ring-cap_inv"></div>
-                    <div style="width:150px; height:120px" id="newsector-legend" class="dc-html-legend-container"></div>
-                </div>
-                <div class="col-xs-3 line-chart">
-                    <h4 data-toggle="tooltip" data-placement="top" title="the sector where you focused on." class="yellow-tooltip"><br>Summary of Sector <small><a id="cap_inv_m">reset</a></small></h4>
-                    <div class="dc-chart" id="chart-ring-cap_invline"></div>
-                </div> -->
-            </div>
-
-        <div id="section3" class="container-fluid">
-            <div class="row" id="control-row">
-                <div class="col-xs-9">
+        <div id="section2" class="container-fluid">
+            <div class="row" id="control-row-bar-pie">
+                <div class="col-xs-12">
                     <div>
                         <div class="dc-dataTable-count">
                             <span class="filter-count"></span> selected out of <span class="total-count"></span> records
@@ -162,18 +148,72 @@
                     <table id="data-table" class="table table-hover dc-data-table">
                     </table>
                 </div>
-                <div class="row" id="control-row">
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Family 2019 in Commune" ><br>Summary of Family 2019 in Commune<small><a id="FAM19">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-FAM19"></div>
+                    <div id="FAM19-row-axis"></div>
+                </div>
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Village in Commune" ><br>Summary of village in Commune<small><a id="village_n">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-village_n"></div>
+                    <div id="village_n-row-axis"></div>
+                </div>
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Orchard in Commune" ><br>Summary of Orchard (Area in hectare) in Commune<small><a id="orchard">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-orchard"></div>
+                    <div id="orchard-row-axis"></div>
+                </div>
+                
+                <div class="col-md-3 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Crop (Area in hectare) in Commune" ><br>Summary of Crop (Area in hectare) in Commune<small><a id="crop">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-crop"></div>
+                    <div id="crop-row-axis"></div>
+                </div>
+                <div class="col-md-6 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Paddy in Commune" ><br>Summary of Paddy (Area in hectare) in Commune<small><a id="paddy_h">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-paddy_h"></div>
+                    <div id="paddy_h-row-axis"></div>
+                </div>
+                <div class="col-md-6 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Canal in Commune" ><br>Summary of Canal in Commune<small><a id="canal">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-canal"></div>
+                    <div id="canal-row-axis"></div>
+                </div>
+                
+                
+           
+        </div>
+    </div>
+ </div>
+            
+
+        <div id="section3" class="container-fluid">
+            <div class="row" id="control-row">
+                
+                <!-- <div class="row" id="control-row">
                 <div class="row" id="control-row-bar-pie">
                     <div class="col-xs-3">
                         <table id="data-table" class="table table-hover dc-data-table">
                         </table>
-                    </div>
-                    <div class="col-md-3 row-chart">
-                        <div class="row" id="control-row-map"></div>
-                        <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Canal in Commune" ><br>Summary of Canal in Commune<small><a id="canal">reset</a></small></h4>
-                        <div class="dc-chart" id="chart-ring-canal"></div>
-                        <div id="canal-row-axis"></div>
-                    </div>
+                    </div> -->
+                <div class="col-md-6 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Settle in Commune" ><br>Summary of Settle (Area in hectare) in Commune<small><a id="settel_h">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-settel_h"></div>
+                    <div id="settel_h-row-axis"></div>
+                </div>
+                <div class="col-md-6 row-chart">
+                    <div class="row" id="control-row-map"></div>
+                    <h4 data-toggle="tooltip" data-placement="top" title="Please press on Province and District Pie Chart to see the sum of Building in Commune" ><br>Summary of Building in Commune<small><a id="building">reset</a></small></h4>
+                    <div class="dc-chart" id="chart-ring-building"></div>
+                    <div id="building-row-axis"></div>
+                </div>
                 </div>
                 </div>
             </div>
@@ -328,5 +368,26 @@
     </script>
 
 </body>
-
+<footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <span class="copyright">Copyright &copy; 2022 rsmapunit@gmail.com</span>
+              </div>
+              <div class="col-md-4">
+                  <ul class="list-inline social-buttons">
+            
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <ul class="list-inline quicklinks">
+                      <li>All rights reserved. </li>
+                  </ul>
+              </div>
+          </div>
+          <br>
+          <div class="row" align="center">
+            <script type="text/javascript" src="//rf.revolvermaps.com/0/0/0.js?i=53xzfwnnefj&amp;d=3&amp;p=0&amp;b=0&amp;w=293&amp;g=2&amp;f=arial&amp;fs=12&amp;r=0&amp;c0=362b05&amp;c1=375363&amp;c2=000000&amp;ic0=0&amp;ic1=0" async="async"></script>
+      </div>
+  </footer>
 </html>
