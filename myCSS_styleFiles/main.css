@@ -192,7 +192,7 @@ table td {
 }
 
 div.dataTables_wrapper {
-    width: 850px;
+    width: 1250px;
 }
 
 #data-table td:nth-child(1) {
@@ -236,24 +236,59 @@ div.dataTables_wrapper {
 #chart-ring-health {
     overflow-y: auto;
     width: 300px;
-    height: 370px;
+    height: 350px;
 }
 
 #chart-ring-canal {
     overflow-y: auto;
-    width: 400px;
+    width: 600px;
     height: 340px;
 }
 #chart-ring-khum {
     overflow-y: auto;
-    width: 300px;
-    height: 370px;
+    width: 330px;
+    height: 350px;
 }
 
 #chart-ring-school {
     overflow-y: auto;
     width: 300px;
-    height: 370px;
+    height: 350px;
+}
+#chart-ring-village_n {
+    overflow-y: auto;
+    width: 330px;
+    height: 350px;
+}
+#chart-ring-building {
+    overflow-y: auto;
+    width: 600px;
+    height: 350px;
+}
+#chart-ring-FAM19 {
+    overflow-y: auto;
+    width: 330px;
+    height: 350px;
+}
+#chart-ring-crop {
+    overflow-y: auto;
+    width: 330px;
+    height: 350px;
+}
+#chart-ring-paddy_h {
+    overflow-y: auto;
+    width: 600px;
+    height: 350px;
+}
+#chart-ring-orchard {
+    overflow-y: auto;
+    width: 330px;
+    height: 350px;
+}
+#chart-ring-settel_h {
+    overflow-y: auto;
+    width: 630px;
+    height: 350px;
 }
 
 nav {
