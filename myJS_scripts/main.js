@@ -339,6 +339,27 @@ var ndx;
     var canalGroup = khumDim.group().reduceSum(function(d) {
         return d.canal;
         }, true);
+    var village_nGroup = khumDim.group().reduceSum(function(d) {
+        return d.village_n;
+        }, true);
+    var buildingGroup = khumDim.group().reduceSum(function(d) {
+        return d.building;
+        }, true);
+    var FAM19Group = khumDim.group().reduceSum(function(d) {
+        return d.FAM19;
+        }, true);
+    var cropGroup = khumDim.group().reduceSum(function(d) {
+        return d.crop;
+        }, true);
+    var paddy_hGroup = khumDim.group().reduceSum(function(d) {
+        return d.paddy_h;
+        }, true);
+    var orchardGroup = khumDim.group().reduceSum(function(d) {
+        return d.orchard;
+        }, true);
+    var settel_hGroup = khumDim.group().reduceSum(function(d) {
+        return d.settel_h;
+        }, true);
 
 
 
@@ -358,6 +379,20 @@ var ndx;
     var healthAxisChart = new dc.axisChart('#health-row-axis', groupname);
     var canalChart = dc.rowChart('#chart-ring-canal', groupname);
     var canalAxisChart = new dc.axisChart('#canal-row-axis', groupname);
+    var village_nChart = dc.rowChart('#chart-ring-village_n', groupname);
+    var village_nAxisChart = new dc.axisChart('#village_n-row-axis', groupname);
+    var buildingChart = dc.rowChart('#chart-ring-building', groupname);
+    var buildingAxisChart = new dc.axisChart('#building-row-axis', groupname);
+    var FAM19Chart = dc.rowChart('#chart-ring-FAM19', groupname);
+    var FAM19AxisChart = new dc.axisChart('#FAM19-row-axis', groupname);
+    var cropChart = dc.rowChart('#chart-ring-crop', groupname);
+    var cropAxisChart = new dc.axisChart('#crop-row-axis', groupname);
+    var paddy_hChart = dc.rowChart('#chart-ring-paddy_h', groupname);
+    var paddy_hAxisChart = new dc.axisChart('#paddy_h-row-axis', groupname);
+    var orchardChart = dc.rowChart('#chart-ring-orchard', groupname);
+    var orchardAxisChart = new dc.axisChart('#orchard-row-axis', groupname);
+    var settel_hChart = dc.rowChart('#chart-ring-settel_h', groupname);
+    var settel_hAxisChart = new dc.axisChart('#settel_h-row-axis', groupname);
 
     var dataTableCount = dc.dataCount('.dc-dataTable-count', groupname);
     var dataTable = dc_datatables.datatable('#data-table', groupname);
@@ -396,18 +431,18 @@ var ndx;
             "<dt><span style='font-weight:bolder'>School: </span> </dt> <dd>" + kv.value.school + "<dd>"+
             "<dt><span style='font-weight:bolder'>Canal: </span> </dt> <dd>" + kv.value.canal + "<dd>" +
             "<dt><span style='font-weight:bolder'>Building: </span> </dt> <dd>" + kv.value.building + "<dd>"+
-            "<dt><span style='font-weight:bolder'>FAM19: </span> </dt> <dd>" + kv.value.FAM19 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>MAL19: </span> </dt> <dd>" + kv.value.MAL19 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>FEM19: </span> </dt> <dd>" + kv.value.FEM19 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>FAM17: </span> </dt> <dd>" + kv.value.FAM17 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>MAL17: </span> </dt> <dd>" + kv.value.MAL17 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>FEM17: </span> </dt> <dd>" + kv.value.FEM17 + "<dd>" +
-            "<dt><span style='font-weight:bolder'>Village_n: </span> </dt> <dd>" + kv.value.village_n + "<dd>" +
-            "<dt><span style='font-weight:bolder'>Settel_h: </span> </dt> <dd>" + kv.value.settel_h + "<dd>" +
-            "<dt><span style='font-weight:bolder'>Orchard: </span> </dt> <dd>" + kv.value.orchard + "<dd>"+
-            "<dt><span style='font-weight:bolder'>Crop: </span> </dt> <dd>" + kv.value.crop + "<dd>" + 
-            "<dt><span style='font-weight:bolder'>Paddy_h: </span> </dt> <dd>" + kv.value.paddy_h + "<dd>" +
-            "<dt><span style='font-weight:bolder'>Urban_h: </span> </dt> <dd>" + kv.value.urban_h + "<dd>" 
+            "<dt><span style='font-weight:bolder'>Family 2019: </span> </dt> <dd>" + kv.value.FAM19 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Male 2019: </span> </dt> <dd>" + kv.value.MAL19 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Female 2019: </span> </dt> <dd>" + kv.value.FEM19 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Family 2017: </span> </dt> <dd>" + kv.value.FAM17 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Male 2017: </span> </dt> <dd>" + kv.value.MAL17 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Female 2017: </span> </dt> <dd>" + kv.value.FEM17 + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Village number: </span> </dt> <dd>" + kv.value.village_n + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Settlement area: </span> </dt> <dd>" + kv.value.settel_h + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Orchard(Area in hectare): </span> </dt> <dd>" + kv.value.orchard + "<dd>"+
+            "<dt><span style='font-weight:bolder'>Crop (Area in hectare): </span> </dt> <dd>" + kv.value.crop + "<dd>" + 
+            "<dt><span style='font-weight:bolder'>Paddy (Area in hectare): </span> </dt> <dd>" + kv.value.paddy_h + "<dd>" +
+            "<dt><span style='font-weight:bolder'>Urban House (Area in hectare): </span> </dt> <dd>" + kv.value.urban_h + "<dd>" 
         })
         .clusterOptions({
             spiderfyOnMaxZoom: true,
@@ -445,7 +480,7 @@ var ndx;
     //         .horizontal(false)
     //         .highlightSelected(true))
     khumChart
-        .width(300)
+        .width(330)
         .height(10080)
         .margins({
             left: 10,
@@ -460,7 +495,7 @@ var ndx;
         .ordering(function(d) {
             return -d.value;
         })
-        .xAxis().ticks(10)
+        .xAxis().ticks(15)
     khumAxisChart
         .margins({
             left: 10,
@@ -469,7 +504,7 @@ var ndx;
             bottom: 10
         })
         .height(50)
-        .width(300)
+        .width(330)
         .dimension(khumDim)
         .group(khumGroup)
         .elastic(true);
@@ -580,7 +615,7 @@ var ndx;
         .legend(new dc.HtmlLegend()
             .container('#pagoda-legend')
             .horizontal(false)
-            .highlightSelected(true));
+            .highlightSelected(true))
 
 
 
@@ -602,6 +637,7 @@ var ndx;
             return -d.value;
         })
         .xAxis().ticks(15)
+        
     healthAxisChart
         .margins({
             left: 10,
@@ -615,7 +651,7 @@ var ndx;
         .group(healthGroup)
         .elastic(true);
     canalChart
-        .width(300)
+        .width(600)
         .height(10080)
         .margins({
             left: 10,
@@ -639,11 +675,217 @@ var ndx;
             bottom: 10
         })
         .height(50)
-        .width(300)
+        .width(600)
         .dimension(khumDim)
         .group(canalGroup)
         .elastic(true);
 
+    village_nChart
+        .width(300)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(village_nGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    village_nAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(village_nGroup)
+        .elastic(true);
+
+    buildingChart
+        .width(600)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(buildingGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    buildingAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(600)
+        .dimension(khumDim)
+        .group(buildingGroup)
+        .elastic(true);
+
+    FAM19Chart
+        .width(300)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(FAM19Group)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    FAM19AxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(FAM19Group)
+        .elastic(true);
+    cropChart
+        .width(300)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(cropGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    cropAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(cropGroup)
+        .elastic(true);
+    paddy_hChart
+        .width(600)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(paddy_hGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    paddy_hAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(600)
+        .dimension(khumDim)
+        .group(paddy_hGroup)
+        .elastic(true);
+    orchardChart
+        .width(300)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(orchardGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    orchardAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(300)
+        .dimension(khumDim)
+        .group(orchardGroup)
+        .elastic(true);
+
+    settel_hChart
+        .width(600)
+        .height(10080)
+        .margins({
+            left: 10,
+            top: 15,
+            right: 10,
+            bottom: 0
+        })
+        .dimension(khumDim)
+        .group(settel_hGroup)
+        .elasticX(true)
+        // .colors("#1ca3ec")
+        .ordering(function(d) {
+            return -d.value;
+        })
+        .xAxis().ticks(15)
+    settel_hAxisChart
+        .margins({
+            left: 10,
+            top: 0,
+            right: 10,
+            bottom: 10
+        })
+        .height(50)
+        .width(600)
+        .dimension(khumDim)
+        .group(settel_hGroup)
+        .elastic(true);
 
     dataCount
         .dimension(ndx)
@@ -658,7 +900,7 @@ var ndx;
         .group(function(d) {
             return 'Data Counts';
         })
-        .size(10)
+        .size(Infinity)
         .columns([{
                 label: 'Province',
                 type: 'string',
@@ -749,37 +991,37 @@ var ndx;
                     return d["building"];
                 }
             }, {
-                label: 'FAM19',
+                label: 'Female 2019',
                 type: 'num',
                 format: function(d) {
                     return d["FAM19"];
                 }
             }, {
-                label: 'MAL19',
+                label: 'Male 2019',
                 type: 'num',
                 format: function(d) {
                     return d["MAL19"];
                 }
             }, {
-                label: 'FEM19',
+                label: 'Female 2019',
                 type: 'num',
                 format: function(d) {
                     return d["FEM19"];
                 }
             }, {
-                label: 'FAM17',
+                label: 'Family 2017',
                 type: 'num',
                 format: function(d) {
                     return d["FAM17"];
                 }
             }, {
-                label: 'MAL17',
+                label: 'Male 2017',
                 type: 'num',
                 format: function(d) {
                     return d["MAL17"];
                 }
             }, {
-                label: 'FEM17',
+                label: 'Female 2017',
                 type: 'num',
                 format: function(d) {
                     return d["FEM17"];
@@ -791,13 +1033,13 @@ var ndx;
                     return d["village_n"];
                 }
             }, {
-                label: 'Settel_h',
+                label: 'Settlement area (area in hectare)',
                 type: 'num',
                 format: function(d) {
                     return d["settel_h"];
                 }
             }, {
-                label: 'Orchard',
+                label: 'Orchard (area in hectare)',
                 type: 'num',
                 format: function(d) {
                     return d["orchard"];
@@ -809,13 +1051,13 @@ var ndx;
                     return d["crop"];
                 }
             }, {
-                label: 'Paddy_h',
+                label: 'Paddy (area in hectare)',
                 type: 'num',
                 format: function(d) {
                     return d["paddy_h"];
                 }
             }, {
-                label: 'Urban_h',
+                label: 'Urban (area in hectare)',
                 type: 'num',
                 format: function(d) {
                     return d["urban_h"];
@@ -870,6 +1112,34 @@ var ndx;
         canalChart.filterAll(groupname);
         dc.redrawAll(groupname);
     });
+    d3.selectAll('a#village_n').on('click', function() {
+        village_nChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#building').on('click', function() {
+        buildingChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#FAM19').on('click', function() {
+        FAM19Chart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#crop').on('click', function() {
+        cropChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#paddy_h').on('click', function() {
+        paddy_hChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#orchard').on('click', function() {
+        orchardChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
+    d3.selectAll('a#settel_h').on('click', function() {
+        orchardChart.filterAll(groupname);
+        dc.redrawAll(groupname);
+    });
 
     $("#mapReset").on('click', function() {
         paperMarkers.map().setView([12.5657, 104.9910], 3);
@@ -891,6 +1161,25 @@ $('.navbar li a').click(function(event) {
 });
 
 var navOffset = $('.navbar').height();
+d3.select('#download')
+    .on('click', function() {
+        var data = nameDim.top(Infinity);
+        if(d3.select('#download-type input:checked').node().value==='table') {
+            data = data.sort(function(a, b) {
+                return table.order()(table.sortBy()(a), table.sortBy()(b));
+            });
+            data = data.map(function(d) {
+                var row = {};
+                table.columns().forEach(function(c) {
+                    row[table._doColumnHeaderFormat(c)] = table._doColumnValueFormat(c, d);
+                });
+                return row;
+            });
+        }
+        var blob = new Blob([d3.csvFormat(data)], {type: "text/csv;charset=utf-8"});
+        saveAs(blob, 'data.csv');
+    });
+
 
 $('.navbar li a').click(function(event) {
     var href = $(this).attr('href');
