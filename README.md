@@ -1,1 +1,1 @@
-Hello I am Y Puthealy. I wrote this dashboard to visualize the big data! Thank You for visiting me here!
+Hello I am Y Puthealy. I wrote this dashboard to visualize the big data of effected flooding area in Cambodia!Row chart, pie chart, data table and map integration were integrated and scrollable. Thank You for visiting me here!
